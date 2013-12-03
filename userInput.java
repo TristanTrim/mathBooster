@@ -10,8 +10,12 @@ import org.lwjgl.opengl.DisplayMode;
 /**Shiny*/
 public class userInput {
 
+// The string that stores user number input
 	public static String userNum = "";
 
+// Input for during gameplay.
+// Collects numbers from numpad and numbar.
+// Uses arrow keys or numpad signs.
 	public static String input () {
 
 		int key = 0;
@@ -86,12 +90,12 @@ public class userInput {
 		}
 
 		System.out.println("~.^: "+key);
-		System.out.println("%%%: "+mathBooster.selection);
+		System.out.println("%%%: "+mainMenu.selection);
 
 		if (Keyboard.getEventKeyState()) {
 
 			if (key==28) {
-				mathBooster.scene=mathBooster.selection;
+				mainMenu.scene=mainMenu.selection;
 				
 			// left
 			}else if (key==203||key==2) {
@@ -103,15 +107,15 @@ public class userInput {
                 
 			// up
 			}else if ((key==200||key==2)&&
-					mathBooster.selection>1) {
+					mainMenu.selection>1) {
                 
-				mathBooster.selection--;
+				mainMenu.selection--;
                 
 			// down
 			}else if ((key==208||key==2)&&
-					mathBooster.selection<2) {
+					mainMenu.selection<2) {
                 
-				mathBooster.selection++;
+				mainMenu.selection++;
 			}
                 
 		}

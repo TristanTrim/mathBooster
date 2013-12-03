@@ -7,7 +7,6 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.util.ResourceLoader;
 
-
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
@@ -18,10 +17,15 @@ public class Displayifyer {
 
 	/** The fonts to draw to the screen */
 	private static TrueTypeFont font;
+	private static TrueTypeFont bigfont;
 
 	/** Boolean flag on whether AntiAliasing is enabled or not */
 	private static boolean antiAlias = false;
 
+
+// Returns false if the display has been shut down.
+// (Usually this happens when the user closes the window.
+// Also clears the screen for the next frame
 	public static boolean displayLives() {
 
 		boolean doesIt = true;
@@ -33,18 +37,16 @@ public class Displayifyer {
 			// Clear the screen and depth buffer
 			GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT); 
 		}
-
 		return doesIt;
 	} 
 
 
+// Initial display setup.
 	public static void makeDisplay() {
 
 
-
-
 		try {
-			Display.setDisplayMode(new DisplayMode(800,600));
+			Display.setDisplayMode(new DisplayMode(mainMenu.screenWidth,mainMenu.screenHeight));
 			Display.create();
 		} catch (LWJGLException e) {
 			e.printStackTrace();
@@ -55,33 +57,16 @@ public class Displayifyer {
 		// init OpenGL
 		GL11.glMatrixMode(GL11.GL_PROJECTION);
 		GL11.glLoadIdentity();
-		GL11.glOrtho(0, mathBooster.screenWidth, mathBooster.screenHeight, 0, 1, -1);
+		GL11.glOrtho(0, mainMenu.screenWidth, mainMenu.screenHeight, 0, 1, -1);
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
  
-
-		// stuff for fonts
-		//GL11.glEnable(GL11.GL_TEXTURE_2D);
-		//GL11.glShadeModel(GL11.GL_SMOOTH);        
-		//GL11.glDisable(GL11.GL_DEPTH_TEST);
-		//GL11.glDisable(GL11.GL_LIGHTING);                    
-         
-		//GL11.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);                
-                //GL11.glClearDepth(1);                                       
-          
-                //GL11.glEnable(GL11.GL_BLEND);
-
-                //GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-          
-                //GL11.glViewport(0,0,mathBooster.screenWidth,mathBooster.screenHeight);
-		//GL11.glMatrixMode(GL11.GL_MODELVIEW);
-
-
-
 
 		//load font
 		Font awtFont = new Font("Times New Roman", Font.BOLD, 12);
 		font = new TrueTypeFont(awtFont, antiAlias);
 
+		awtFont = new Font("Times New Roman", Font.BOLD, 24);
+		bigfont = new TrueTypeFont(awtFont, antiAlias);
 
 	}
 
@@ -139,6 +124,17 @@ public class Displayifyer {
 
 		}
 
+	}
+
+	public static void drawBigString(int x, int y, String txt) {
+
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+                
+		bigfont.drawString(x, y, txt, Color.blue);
+                
+		GL11.glDisable(GL11.GL_BLEND);
+		
 	}
 
 	public static void drawString(int x, int y, String txt) {
