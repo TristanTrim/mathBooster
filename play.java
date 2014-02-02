@@ -72,20 +72,20 @@ public class play {
 		// Set up visual data in arrays.
 
 			// position of lines*10 on the map
-			for (int i = 0;i<map.length;i++) {
+		///////for (int i = 0;i<map.length;i++) {
         
-				map[i] = i*10-100-userPosition;
+		////////	map[i] = i*10-100-userPosition;
 
-				numbers[i][0] = (i*10-userPosition)
-						*(screenWidth/mapWidth);
+		////////	numbers[i][0] = (i*10-userPosition)
+		////////			*(screenWidth/mapWidth);
         
-				numbers[i][1] = screenHeight-50;
-				numbers[i][2] = i*10;
+		////////	numbers[i][1] = screenHeight-50;
+		////////	numbers[i][2] = i*10;
         
-			}
+		////////}
 
 			// position of lines*1 on the map
-			for (int i = 0;i<10;i++) {
+			for (int i = 0;i<100;i++) {
         
 				map[i] = i+10-userPosition;
 
@@ -141,6 +141,7 @@ public class play {
 			mainMenu.display.drawString(10,50,("Score: "+score));
 
 			mainMenu.display.drawBigString(screenWidth/2,screenHeight/2,(""+userInput.userNum));
+			mainMenu.display.drawBigString(screenWidth/2-100,screenHeight/2,(""+userPosition));
 
 			int[][] planets = makePlanetObs(planetSystems.list);
 			mainMenu.display.drawQuads(planets);

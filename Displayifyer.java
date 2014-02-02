@@ -65,7 +65,7 @@ public class Displayifyer {
 		Font awtFont = new Font("Times New Roman", Font.BOLD, 12);
 		font = new TrueTypeFont(awtFont, antiAlias);
 
-		awtFont = new Font("Times New Roman", Font.BOLD, 24);
+		awtFont = new Font("Times New Roman", Font.BOLD, 36);
 		bigfont = new TrueTypeFont(awtFont, antiAlias);
 
 	}
@@ -131,7 +131,7 @@ public class Displayifyer {
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
                 
-		bigfont.drawString(x, y, txt, Color.blue);
+		bigfont.drawString(x, y, txt, Color.white);
                 
 		GL11.glDisable(GL11.GL_BLEND);
 		
